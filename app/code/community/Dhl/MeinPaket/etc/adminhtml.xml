@@ -1,43 +1,30 @@
 <?xml version="1.0"?>
 <config>
-	<translate>
-		<modules>
-			<Dhl_adminhtml>
-				<files>
-					<meinpaket>Dhl_Meinpaket.csv</meinpaket>
-				</files>
-			</Dhl_adminhtml>
-		</modules>
-	</translate>
 	<menu>
 		<meinpaket>
-			<title>MeinPaket.de</title>
+			<title>Allyouneed / Postpay</title>
 			<children>
-				<meinpaket_backlog translate="title" module="meinpaket">
+				<backlog translate="title" module="meinpaket">
 					<title>Synchronisation</title>
 					<action>meinpaket/adminhtml_backlog_product</action>
-				</meinpaket_backlog>
-				<!-- <meinpaket_productexport translate="title"> <title>export products</title> <action>meinpaket/adminhtml_productExport</action> 
-					</meinpaket_productexport> <meinpaket_orderimport translate="title"> <title>import orders</title> <action>meinpaket/adminhtml_orderImport</action> 
-					</meinpaket_orderimport> -->
-				<meinpaket_categoryimport translate="title">
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
+				</backlog>
+				<category_import translate="title" module="meinpaket">
 					<title>import categories</title>
 					<action>meinpaket/adminhtml_categoryImport</action>
-				</meinpaket_categoryimport>
-				<!-- <meinpaket_attributemapping translate="title"> <title>attribute mapping</title> <action>meinpaket/adminhtml_attributeMapping</action> 
-					</meinpaket_attributemapping> -->
-				<meinpaket_log translate="title" module="meinpaket">
-					<title>Log</title>
-					<action>meinpaket/adminhtml_log</action>
-				</meinpaket_log>
-				<meinpaket_async translate="title" module="meinpaket">
-					<title>Async</title>
-					<action>meinpaket/adminhtml_async</action>
-				</meinpaket_async>
-				<meinpaket_bestprice translate="title">
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
+				</category_import>
+				<bestprice translate="title" module="meinpaket">
 					<title>best prices</title>
 					<action>meinpaket/adminhtml_bestPrice</action>
-				</meinpaket_bestprice>
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
+				</bestprice>
 			</children>
 			<sort_order>90</sort_order>
 			<class>meinpaket</class>
@@ -47,12 +34,37 @@
 		<resources>
 			<admin>
 				<children>
+					<meinpaket translate="title">
+						<title>Allyouneed</title>
+						<children>
+							<backlog translate="title">
+								<title>Backlog</title>
+								<sort_order>50</sort_order>
+							</backlog>
+							<bestprice translate="title">
+								<title>Bestprice</title>
+								<sort_order>51</sort_order>
+							</bestprice>
+							<category_import translate="title">
+								<title>Category Import</title>
+								<sort_order>52</sort_order>
+							</category_import>
+							<matching translate="title">
+								<title>Matching</title>
+								<sort_order>53</sort_order>
+							</matching>
+							<product_export translate="title">
+								<title>Product Export</title>
+								<sort_order>54</sort_order>
+							</product_export>
+						</children>
+					</meinpaket>
 					<system>
 						<children>
 							<config>
 								<children>
-									<meinpaket translate="title" module="Dhl_MeinPaket">
-										<title>MeinPaket.de</title>
+									<meinpaket translate="title" module="meinpaket">
+										<title>Allyouneed / Postpay</title>
 										<sort_order>100</sort_order>
 									</meinpaket>
 								</children>

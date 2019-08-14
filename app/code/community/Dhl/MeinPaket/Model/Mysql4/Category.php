@@ -1,11 +1,10 @@
 <?php
 
 /**
- * MeinPaket category resource model
+ * Allyouneed category resource model
  *
  * @category   Dhl
  * @package    Dhl_MeinPaket
- * @author     Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Mysql4_Category extends Mage_Core_Model_Mysql4_Abstract {
 	protected function _construct() {

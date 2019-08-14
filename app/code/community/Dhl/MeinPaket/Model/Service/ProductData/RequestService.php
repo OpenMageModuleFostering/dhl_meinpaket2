@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Service which exports an order's shipment to MeinPaket.de.
+ * Service which exports an order's shipment to Allyouneed.
  * 
  * @category	Dhl
  * @package		Dhl_MeinPaket
@@ -10,7 +10,7 @@
  */
 class Dhl_MeinPaket_Model_Service_ProductData_RequestService {
 	/**
-	 * Exports a shipment to MeinPaket.de.
+	 * Exports a shipment to Allyouneed.
 	 *
 	 * @param Mage_Catalog_Model_Product $product        	
 	 * @throws Dhl_MeinPaket_Model_Xml_XmlBuildException
@@ -21,10 +21,10 @@ class Dhl_MeinPaket_Model_Service_ProductData_RequestService {
 	 */
 	public function getProductData(Mage_Catalog_Model_Product $product, $sendEAN = false, $sendName = false) {
 		/* @var $uploadRequest Dhl_MeinPaket_Model_Xml_Request_ProductDataRequest */
-		$productDataRequest = Mage::getModel ( 'meinpaket/xml_request_dataRequest' );
+		$productDataRequest = Mage::getModel ( 'meinpaketcommon/xml_request_dataRequest' );
 		
 		/* @var $client Dhl_MeinPaket_Model_Client_XmlOverHttp */
-		$client = Mage::getModel ( 'meinpaket/client_xmlOverHttp' );
+		$client = Mage::getModel ( 'meinpaketcommon/client_xmlOverHttp' );
 		
 		try {
 			$productDataRequest->addProduct ( $product, $sendEAN, $sendName );
@@ -50,14 +50,14 @@ class Dhl_MeinPaket_Model_Service_ProductData_RequestService {
 	 */
 	public function requestBestPrices() {
 		/* @var $uploadRequest Dhl_MeinPaket_Model_Xml_Request_ProductDataRequest */
-		$productDataRequest = Mage::getModel ( 'meinpaket/xml_request_dataRequest' );
+		$productDataRequest = Mage::getModel ( 'meinpaketcommon/xml_request_dataRequest' );
 		
 		/* @var $client Dhl_MeinPaket_Model_Client_XmlOverHttp */
-		$client = Mage::getModel ( 'meinpaket/client_xmlOverHttp' );
+		$client = Mage::getModel ( 'meinpaketcommon/client_xmlOverHttp' );
 		
 		try {
 			/* @var $collection Mage_Catalog_Model_Resource_Product_Collection */
-			$collection = Mage::getModel ( 'catalog/product' )->getCollection ();
+			$collection = Mage::getModel ( 'catalog/product' )->getCollection ()->addStoreFilter ( Mage::helper ( 'meinpaketcommon/data' )->getMeinPaketStoreId () );
 			
 			$collection->addAttributeToFilter ( 'meinpaket_id', array (
 					'neq' => '' 

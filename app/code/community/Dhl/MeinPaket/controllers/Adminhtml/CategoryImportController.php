@@ -1,14 +1,12 @@
 <?php
 
 /**
- * Controller for MeinPaket marketplace category structure import.
+ * Controller for Allyouneed marketplace category structure import.
  * 
  * @category	Dhl
  * @package		Dhl_MeinPaket
  * @subpackage	Adminhtml
  * @version		$Id$
- * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Adminhtml_CategoryImportController extends Mage_Adminhtml_Controller_Action {
 	/**
@@ -17,9 +15,17 @@ class Dhl_MeinPaket_Adminhtml_CategoryImportController extends Mage_Adminhtml_Co
 	 * @return Dhl_MeinPaket_Adminhtml_CategoryImportController
 	 */
 	protected function _initAction() {
-		$this->loadLayout ()->_setActiveMenu ( 'meinpaket' ); // TODO how to make this via configuration?
-		$this->_title ( $this->__ ( 'MeinPaket.de' ) )->_title ( $this->__ ( 'Category Import' ) );
+		$this->loadLayout ()->_setActiveMenu ( 'meinpaket' );
+		$this->_title ( $this->__ ( 'Allyouneed' ) )->_title ( $this->__ ( 'Category Import' ) );
 		return $this;
+	}
+	/**
+	 * (non-PHPdoc)
+	 * 
+	 * @see Mage_Adminhtml_Controller_Action::_isAllowed()
+	 */
+	protected function _isAllowed() {
+		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'admin/meinpaket/category_import' );
 	}
 	
 	/**
@@ -50,10 +56,10 @@ class Dhl_MeinPaket_Adminhtml_CategoryImportController extends Mage_Adminhtml_Co
 			$result = $service->importMarketplaceCategoryStructure ();
 		} catch ( Dhl_MeinPaket_Model_Client_BadHttpReturnCodeException $e ) {
 			Mage::logException ( $e );
-			$errorMsg = $this->__ ( 'Connecting to MeinPaket.de server failed.' );
+			$errorMsg = $this->__ ( 'Connecting to Allyouneed server failed.' );
 		} catch ( Dhl_MeinPaket_Model_Client_HttpTimeoutException $e ) {
 			Mage::logException ( $e );
-			$errorMsg = $this->__ ( 'Connection to MeinPaket.de server timed out.' );
+			$errorMsg = $this->__ ( 'Connection to Allyouneed server timed out.' );
 		} catch ( Exception $e ) {
 			Mage::logException ( $e );
 			$errorMsg = $this->__ ( 'Unknown error' ) . '. (' . $e->getMessage () . ')';

@@ -1,11 +1,10 @@
 <?php
 
 /**
- * MeinPaket category collection.
+ * Allyouneed category collection.
  *
  * @category   Dhl
  * @package    Dhl_MeinPaket
- * @author     Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Mysql4_Category_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract {
 	/**

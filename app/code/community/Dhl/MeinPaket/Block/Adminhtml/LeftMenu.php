@@ -7,8 +7,6 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Block_Adminhtml
  * @version		$Id$
- * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Block_Adminhtml_Leftmenu extends Mage_Adminhtml_Block_Template {
 	/**

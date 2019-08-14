@@ -23,7 +23,7 @@ class Dhl_MeinPaket_Block_Adminhtml_Catalog_Product_Matching_Tab extends Mage_Ad
 	 * @return string
 	 */
 	public function getTabLabel() {
-		return $this->__ ( 'DHL Meinpaket Matching' );
+		return $this->__ ( 'Allyouneed Matching' );
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class Dhl_MeinPaket_Block_Adminhtml_Catalog_Product_Matching_Tab extends Mage_Ad
 	 * @return string
 	 */
 	public function getTabTitle() {
-		return $this->__ ( 'Assign DHL Meinpaket Category' );
+		return $this->__ ( 'Assign Allyouneed Category' );
 	}
 	
 	/**

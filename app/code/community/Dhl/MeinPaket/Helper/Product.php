@@ -30,7 +30,17 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->_eanValidator = Mage::getSingleton ( 'meinpaket/Validation_ValidatorFactory' )->createEanValidator ();
+		$this->_eanValidator = Mage::getSingleton ( 'meinpaketcommon/validation_validator_ean' );
+	}
+	
+	/**
+	 * Return true if the product should be listed.
+	 * 
+	 * @param Mage_Catalog_Model_Product $product to be checked
+	 * @return boolean true if the product should be listed
+	 */
+	public function isActive(Mage_Catalog_Model_Product $product) {
+		return $product->getData ( 'sync_with_dhl_mein_paket' ) > 0;
 	}
 	
 	/**
@@ -52,7 +62,7 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 	public function getEan(Mage_Catalog_Model_Product $product) {
 		$eanAttributeCode = Mage::getStoreConfig ( 'meinpaket/product_attributes/ean_attribute' );
 		
-		if (! empty ( $eanAttributeCode ) && $product->hasData($eanAttributeCode)) {
+		if (! empty ( $eanAttributeCode ) && $product->hasData ( $eanAttributeCode ) && $this->_eanValidator->isValid ( $product->getData ( $eanAttributeCode ) )) {
 			return $product->getData ( $eanAttributeCode );
 		} else {
 			return null;
@@ -262,7 +272,7 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 		if ($simpleProduct->getTypeId () === Mage_Catalog_Model_Product_Type::TYPE_SIMPLE) {
 			$parentIds = Mage::getModel ( 'catalog/product_type_configurable' )->getParentIdsByChild ( $simpleProduct->getId () );
 			if (isset ( $parentIds [0] )) {
-				$parentConfigurable = Mage::getModel ( 'catalog/product' )->load ( $parentIds [0] );
+				$parentConfigurable = Mage::getModel ( 'catalog/product' )->setStoreId(Mage::helper ( 'meinpaketcommon/data' )->getMeinPaketStoreId ())->load ( $parentIds [0] );
 			}
 		}
 		
@@ -287,22 +297,22 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 				$description = $this->__ ( 'Missing value for field' ) . ' "<i><b>' . $this->__ ( $this->getLabelForFieldName ( $errorCode ) ) . '</b></i>".';
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_PRODUCT_NOT_EXISTS_IN_MEINPAKET :
-				$description = $this->__ ( 'Product is unknown in MeinPaket marketplace' ) . '.';
+				$description = $this->__ ( 'Product is unknown in Allyouneed marketplace' ) . '.';
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_PRODUCT_NEGATIVE_STOCK :
 				$description = $this->__ ( 'Product stock is lower than zero.' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_MEINPAKET_SERVER_ERROR :
-				$description = $this->__ ( 'Internal error on MeinPaket server' ) . '.';
+				$description = $this->__ ( 'Internal error on Allyouneed server' ) . '.';
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_NOT_AUTHORIZED :
-				$description = $this->__ ( 'You are not authorized to execute the requested functionality on MeinPaket' );
+				$description = $this->__ ( 'You are not authorized to execute the requested functionality on Allyouneed' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_INVALID_DATA :
 				$description = $this->__ ( 'The provided data was incorrect' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_INVALID_MODIFICATION :
-				$description = $this->__ ( 'Ivalid modification of element' );
+				$description = $this->__ ( 'Invalid modification of element' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_NO_CATEGORIZATION :
 				$description = $this->__ ( 'The product is not mapped to neither a marketplace nor a shop category' );
@@ -311,16 +321,16 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 				$description = $this->__ ( 'The referenced product cannot be sold' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_MARKETPLACE_CATEGORY_NOT_FOUND :
-				$description = $this->__ ( 'The referenced marketplace category could not be found at MeinPaket' );
+				$description = $this->__ ( 'The referenced marketplace category could not be found at Allyouneed' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_SHOP_CATEGORY_NOT_FOUND :
-				$description = $this->__ ( 'The referenced shop category could not be found at MeinPaket' );
+				$description = $this->__ ( 'The referenced shop category could not be found at Allyouneed' );
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_MISSING_VALUE_FOR_ATTRIBUTE :
 				$description = $this->__ ( 'Missing value mapping for attribute' ) . ' "' . $errorCode . '".';
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_VARIANT_GROUP_NOT_EXISTS :
-				$description = $this->__ ( 'Variant group does not exist on MeinPaket' ) . ' "' . $errorCode . '".';
+				$description = $this->__ ( 'Variant group does not exist on Allyouneed' ) . ' "' . $errorCode . '".';
 				break;
 			case Dhl_MeinPaket_Model_Validation_ValidationInterface::ERROR_UNDEFINED :
 			default :

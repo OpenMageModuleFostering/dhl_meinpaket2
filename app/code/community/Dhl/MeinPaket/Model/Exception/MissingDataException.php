@@ -7,7 +7,6 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Exception
  * @version		$Id$
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Exception_MissingDataException extends Dhl_MeinPaket_Model_Exception_InvalidDataException {
 	/**

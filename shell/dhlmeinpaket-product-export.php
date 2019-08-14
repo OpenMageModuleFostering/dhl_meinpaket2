@@ -2,17 +2,16 @@
 require_once 'abstract.php';
 
 /**
- * Exports products to MeinPaket.
+ * Exports products to Allyouneed.
  *
  * @category Dhl
  * @package Dhl_MeinPaket
  * @subpackage Dhl_MeinPaket_Shell
  * @version $Id$
- * @author Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Shell_ProductExport extends Mage_Shell_Abstract {
 	/**
-	 * Exports products DHL MeinPaket.
+	 * Exports products DHL Allyouneed.
 	 *
 	 * @return Dhl_MeinPaket_Shell_ProductExport
 	 */

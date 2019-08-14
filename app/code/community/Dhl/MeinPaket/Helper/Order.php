@@ -7,11 +7,10 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Model_Util
  * @version		$Id$
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Helper_Order extends Mage_Core_Helper_Abstract {
 	/**
-	 * Tells if the given order is an order that was imported from MeinPaket.de.
+	 * Tells if the given order is an order that was imported from Allyouneed.
 	 *
 	 * @param Mage_Sales_Model_Order $order        	
 	 * @return boolean

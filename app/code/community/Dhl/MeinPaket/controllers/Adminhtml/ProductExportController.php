@@ -1,14 +1,12 @@
 <?php
 
 /**
- * Controls the export of local products to MeinPaket.
+ * Controls the export of local products to Allyouneed.
  * 
  * @category	Dhl
  * @package		Dhl_MeinPaket
  * @subpackage	Adminhtml
  * @version		$Id$
- * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Controller_Action {
 	/**
@@ -37,9 +35,18 @@ class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Con
 	protected function _initAction() {
 		$this->loadLayout ()->_setActiveMenu ( 'meinpaket' );
 		
-		$this->_title ( $this->__ ( 'MeinPaket.de' ) )->_title ( $this->__ ( 'Product Export' ) );
+		$this->_title ( $this->__ ( 'Allyouneed' ) )->_title ( $this->__ ( 'Product Export' ) );
 		
 		return $this;
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * 
+	 * @see Mage_Adminhtml_Controller_Action::_isAllowed()
+	 */
+	protected function _isAllowed() {
+		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'admin/meinpaket/product_export' );
 	}
 	
 	/**
@@ -65,7 +72,7 @@ class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Con
 	}
 	
 	/**
-	 * Transfers descriptions and offers of the selected products to MeinPaket.
+	 * Transfers descriptions and offers of the selected products to Allyouneed.
 	 *
 	 * @return void
 	 */
@@ -77,7 +84,7 @@ class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Con
 		$results = null;
 		
 		try {
-			$results = $exportService->exportProducts ( );
+			$results = $exportService->exportProducts ();
 			
 			if ($debugMode) {
 				Mage::getSingleton ( 'adminhtml/session' )->addSuccess ( 'DEBUG:' . $results->debugOutput () );
@@ -107,10 +114,10 @@ class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Con
 		$this->_initAction ();
 		$block = $this->getLayout ()->getBlock ( 'meinpaket.adminhtml_productExport_export' );
 		/*
-		if ($results !== null) {
-			$block->setResults ( $results );
-		}
-		*/
+		 * if ($results !== null) {
+		 * $block->setResults ( $results );
+		 * }
+		 */
 		$this->renderLayout ();
 	}
 	

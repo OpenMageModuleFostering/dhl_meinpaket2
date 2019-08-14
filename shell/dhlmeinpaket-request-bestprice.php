@@ -2,17 +2,16 @@
 require_once 'abstract.php';
 
 /**
- * Imports the variant configurations from MeinPaket.
+ * Imports the variant configurations from Allyouneed.
  *
  * @category Dhl
  * @package Dhl_MeinPaket
  * @subpackage Dhl_MeinPaket_Shell
  * @version $Id$
- * @author Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Shell_RequestBestPrice extends Mage_Shell_Abstract {
 	/**
-	 * Imports the variant configurations from DHL MeinPaket.
+	 * Imports the variant configurations from DHL Allyouneed.
 	 *
 	 * @return Dhl_MeinPaket_Shell_VariantConfigurationsDownload
 	 */

@@ -2,17 +2,16 @@
 require_once 'abstract.php';
 
 /**
- * Imports the category structure from MeinPaket.
+ * Imports the category structure from Allyouneed.
  *
  * @category Dhl
  * @package Dhl_MeinPaket
  * @subpackage Dhl_MeinPaket_Shell
  * @version $Id$
- * @author Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Shell_CategoryImport extends Mage_Shell_Abstract {
 	/**
-	 * Imports the marketplace category structure from DHL MeinPaket.
+	 * Imports the marketplace category structure from DHL Allyouneed.
 	 *
 	 * @return Dhl_MeinPaket_Shell_CategoryImport
 	 */

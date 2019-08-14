@@ -2,15 +2,14 @@
 require_once 'abstract.php';
 
 /**
- * Imports the category structure from MeinPaket.
+ * Imports the category structure from Allyouneed.
  *
  * @category Dhl
  * @package Dhl_MeinPaket
  * @subpackage Dhl_MeinPaket_Shell
  * @version $Id$
- * @author Timo Fuchs <timo.fuchs@aoemedia.de>
  */
-class Dhl_MeinPaket_Shell_OrderImport extends Mage_Shell_Abstract {
+class Dhl_MeinPaketCommon_Shell_OrderImport extends Mage_Shell_Abstract {
 	/**
 	 *
 	 * @var integer
@@ -18,7 +17,7 @@ class Dhl_MeinPaket_Shell_OrderImport extends Mage_Shell_Abstract {
 	const DEFAULT_HOURS = 24;
 	
 	/**
-	 * Imports orders from DHL MeinPaket.
+	 * Imports orders from DHL Allyouneed.
 	 *
 	 * @return Dhl_MeinPaket_Shell_OrderImport
 	 */
@@ -26,7 +25,7 @@ class Dhl_MeinPaket_Shell_OrderImport extends Mage_Shell_Abstract {
 		echo "Starting order import (" . $this->getFormattedDate () . ")\n";
 		
 		/* @var $service Dhl_MeinPaket_Model_Service_Order_ImportService */
-		$service = Mage::getModel ( "meinpaket/service_order_importService" );
+		$service = Mage::getModel ( "meinpaketcommon/service_order_importService" );
 		$hours = self::DEFAULT_HOURS;
 		$startTime = 0;
 		$endTime = 0;
@@ -40,7 +39,7 @@ class Dhl_MeinPaket_Shell_OrderImport extends Mage_Shell_Abstract {
 			$hours = $passedHours;
 		}
 		
-		$endTime = mktime ();
+		$endTime = time ();
 		$startTime = $endTime - ($hours * 3600);
 		
 		echo "Time range: " . $this->getFormattedDate ( $startTime ) . " GMT - " . $this->getFormattedDate ( $endTime ) . " GMT\n";
@@ -53,7 +52,7 @@ class Dhl_MeinPaket_Shell_OrderImport extends Mage_Shell_Abstract {
 		}
 		
 		echo "Import finished       (" . $this->getFormattedDate () . ")\n";
-		echo "Imported " . sizeof ( $service->getOrderCount () ) . " orders.\n";
+		echo "Imported " . $service->getOrderCount ()['imported'] . " orders.\n";
 		
 		return $this;
 	}
@@ -92,5 +91,5 @@ USAGE;
 	}
 }
 
-$orderImporter = new Dhl_MeinPaket_Shell_OrderImport ();
+$orderImporter = new Dhl_MeinPaketCommon_Shell_OrderImport ();
 $orderImporter->run ();
