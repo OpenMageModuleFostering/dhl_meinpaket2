@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+	<translate>
+		<modules>
+			<Dhl_adminhtml>
+				<files>
+					<meinpaket>Dhl_Meinpaket.csv</meinpaket>
+				</files>
+			</Dhl_adminhtml>
+		</modules>
+	</translate>
+	<menu>
+		<meinpaket>
+			<title>MeinPaket.de</title>
+			<children>
+				<meinpaket_backlog translate="title" module="meinpaket">
+					<title>Synchronisation</title>
+					<action>meinpaket/adminhtml_backlog_product</action>
+				</meinpaket_backlog>
+				<!-- <meinpaket_productexport translate="title"> <title>export products</title> <action>meinpaket/adminhtml_productExport</action> 
+					</meinpaket_productexport> <meinpaket_orderimport translate="title"> <title>import orders</title> <action>meinpaket/adminhtml_orderImport</action> 
+					</meinpaket_orderimport> -->
+				<meinpaket_categoryimport translate="title">
+					<title>import categories</title>
+					<action>meinpaket/adminhtml_categoryImport</action>
+				</meinpaket_categoryimport>
+				<!-- <meinpaket_attributemapping translate="title"> <title>attribute mapping</title> <action>meinpaket/adminhtml_attributeMapping</action> 
+					</meinpaket_attributemapping> -->
+				<meinpaket_log translate="title" module="meinpaket">
+					<title>Log</title>
+					<action>meinpaket/adminhtml_log</action>
+				</meinpaket_log>
+				<meinpaket_async translate="title" module="meinpaket">
+					<title>Async</title>
+					<action>meinpaket/adminhtml_async</action>
+				</meinpaket_async>
+				<meinpaket_bestprice translate="title">
+					<title>best prices</title>
+					<action>meinpaket/adminhtml_bestPrice</action>
+				</meinpaket_bestprice>
+			</children>
+			<sort_order>90</sort_order>
+			<class>meinpaket</class>
+		</meinpaket>
+	</menu>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<meinpaket translate="title" module="Dhl_MeinPaket">
+										<title>MeinPaket.de</title>
+										<sort_order>100</sort_order>
+									</meinpaket>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,47 @@
+
+<div class="content-header">
+	<table cellspacing="0" class="grid-header">
+		<tr>
+			<td><h3 class="icon-head meinpaket"><?php echo __('Import Categories'); ?></h3></td>
+			<td class="a-right">
+				<!-- <button onclick="setLocationWithWait('<?php echo $this->getUrl('meinpaket/adminhtml_categoryImport/import/') ?>')" class="scalable" type="button"><span><?php echo $this->__('import categories'); ?></span></button> -->
+				<button onclick="startProcessing()" class="scalable" type="button"
+					id="startButton">
+					<span><?php echo $this->__('import categories'); ?></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="dashboard-container meinpaket-content">
+
+	<ul class="meinpaket-steps">
+		<li class="active nr1"><p><?php echo __('Overview'); ?></p></li>
+		<li class="nr2"><p><?php echo __('Import'); ?></p></li>
+		<li class="nr3"><p><?php echo __('Result'); ?></p></li>
+	</ul>
+	<div class="cc">
+		<!--  -->
+	</div>
+
+	<div id="meinpaket-description">
+		<p><?php echo __('Textual introduction into category import goes here...'); ?></p>
+	</div>
+
+	<div id="disabled-till-export" class="meinpaket-waitbox"
+		style="display: none">
+		<img src="/skin/adminhtml/default/default/meinpaket/images/loader.gif" /><br />
+		<small><?php echo $this->__('please wait'); ?></small>
+	</div>
+
+	<form id="meinpaket_form" name="meinpaket_form" method="get"
+		action="<?php echo $this->getUrl('meinpaket/adminhtml_categoryImport/import/') ?>">
+		<fieldset>
+			<button onclick="startProcessing()" class="scalable" type="button"
+				id="startButton">
+				<span><?php echo $this->__('import categories'); ?></span>
+			</button>
+		</fieldset>
+	</form>
+</div>
+

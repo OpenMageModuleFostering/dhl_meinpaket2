@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/DHL_MeinPaket2",
+    "type": "magento-module",
+    "license": "--",
+    "homepage": "",
+    "description": "MeinPaket connector",
+    "authors": [
+    {
+        "name": "DHL Vertriebs GmbH",
+        "email": "support@meinpaket.de"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

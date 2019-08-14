@@ -1,0 +1,19 @@
+<div class="content-header">
+	<table cellspacing="0" class="grid-header">
+		<tr>
+			<td><h3 class="icon-head meinpaket"><?php echo __('Attribute Mappings'); ?></h3></td>
+			<td class="a-right">
+				<button
+					onclick="variantconfigurationsImport('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) ?>')"
+					class="scalable add" type="button">
+					<span><?php echo $this->__('import Variantconfigurations'); ?></span>
+				</button>
+				<button
+					onclick="setLocation('<?php echo $this->getUrl('meinpaket/adminhtml_attributeMapping/edit') ?>')"
+					class="scalable add" type="button" id="startButton">
+					<span><?php echo $this->__('Add Attribute Mapping'); ?></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>

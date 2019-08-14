@@ -1,0 +1,23 @@
+<?php
+/* @var $block Dhl_MeinPaket_Block_Adminhtml_Attributemapping_Edit */
+$block = $this;
+?>
+<div class="content-header">
+	<table cellspacing="0" class="grid-header">
+		<tr>
+			<td><h3 class="icon-head meinpaket"><?php echo __('Attribute Mappings'); ?></h3></td>
+			<td class="a-right">
+				<button onclick="addAttributeMapping()" class="scalable add"
+					type="button" id="startButton">
+					<span><?php echo $this->__('Add Attribute Mapping'); ?></span>
+				</button> <input type="hidden" name="mapping_id" id="mapping_id"
+				value="<?php echo $block->getMappingId(); ?>" /> <input
+				type="hidden" name="variant_id" id="variant_id"
+				value="<?php echo $block->getVariantId(); ?>" /> <input
+				type="hidden" name="attribute_set_id" id="attribute_set_id"
+				value="<?php echo $block->getAttributeSetId(); ?>" />
+			</td>
+		</tr>
+	</table>
+</div>
+todo
