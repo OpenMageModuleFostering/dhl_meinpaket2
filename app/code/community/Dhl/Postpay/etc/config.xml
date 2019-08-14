@@ -37,7 +37,7 @@
 	<default>
 		<payment>
 			<postpay_standard>
-				<active>1</active>
+				<active>0</active>
 				<model>postpay/payment_method_standard</model>
 				<order_status>pending</order_status>
 				<title>Postpay Standard</title>
@@ -46,7 +46,7 @@
 				<!-- <group>offline</group> -->
 			</postpay_standard>
 			<postpay_express>
-				<active>1</active>
+				<active>0</active>
 				<model>postpay/payment_method_express</model>
 				<order_status>pending</order_status>
 				<title>Postpay Express</title>

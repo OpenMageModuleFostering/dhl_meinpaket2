@@ -3,7 +3,7 @@
 	<sections>
 		<meinpaket module="core" translate="label">
 			<comment>Test</comment>
-			<label>DHL MeinPaket/Postpay</label>
+			<label>DHL MeinPaket / Postpay</label>
 			<tab>general</tab>
 			<frontend_type>text</frontend_type>
 			<sort_order>1000</sort_order>
@@ -15,7 +15,7 @@
 				<store>
 					<label>Store</label>
 					<frontend_type>text</frontend_type>
-					<sort_order>1</sort_order>
+					<sort_order>2</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
 					<show_in_store>1</show_in_store>
@@ -35,7 +35,7 @@
 				<credentials translate="label">
 					<label>Credentials</label>
 					<frontend_type>text</frontend_type>
-					<sort_order>3</sort_order>
+					<sort_order>1</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
 					<show_in_store>0</show_in_store>
@@ -65,7 +65,7 @@
 				<endpoint translate="label">
 					<label>Remote system</label>
 					<frontend_type>text</frontend_type>
-					<sort_order>2</sort_order>
+					<sort_order>3</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
 					<show_in_store>1</show_in_store>
@@ -188,15 +188,6 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
 						</async>
-						<product translate="label comment">
-							<label>Product Export</label>
-							<comment><![CDATA[Product export interval]]></comment>
-							<frontend_type>text</frontend_type>
-							<sort_order>20</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-						</product>
 						<order translate="label comment">
 							<label>Order Import</label>
 							<comment><![CDATA[Order import interval.]]></comment>
@@ -206,15 +197,6 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
 						</order>
-						<bestprice translate="label comment">
-							<label>BestPrice Interval</label>
-							<comment><![CDATA[BestPrice refresh interval.]]></comment>
-							<frontend_type>text</frontend_type>
-							<sort_order>40</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-						</bestprice>
 						<cleanup translate="label comment">
 							<label>Cleanup Interval</label>
 							<comment><![CDATA[Interval to run cleanups.]]></comment>

@@ -14,7 +14,12 @@ class Dhl_Postpay_Block_Checkout extends Mage_Core_Block_Template {
 	 *
 	 * @var bool
 	 */
-	protected $_shouldRender = true;
+	protected $_shouldRender;
+	
+	public function __construct() {
+		parent::__construct();
+		$this->_shouldRender = Mage::helper('postpay/data')->isActive();
+	}
 	
 	/**
 	 *

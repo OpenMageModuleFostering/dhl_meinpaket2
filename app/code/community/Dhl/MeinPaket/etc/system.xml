@@ -3,8 +3,29 @@
 	<sections>
 		<meinpaket module="core" translate="label">
 			<groups>
+				<credentials translate="label">
+					<label>Credentials</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<frontend_class>meinpaket</frontend_class>
+					<fields>
+						<active translate="label comment">
+							<label>Meinpaket Active</label>
+							<comment><![CDATA[Disable Postpay using Configuration / Payment Methods / Postpay Standard and Postpay Express.]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+					</fields>
+				</credentials>
 				<taxrates translate="label">
-					<label>Tax rates</label>
+					<label>Tax rates (nur MeinPaket)</label>
 					<frontend_type>text</frontend_type>
 					<sort_order>30</sort_order>
 					<show_in_default>1</show_in_default>
@@ -36,7 +57,7 @@
 					</fields>
 				</taxrates>
 				<product_attributes translate="label">
-					<label>Product attributes</label>
+					<label>Product attributes (nur MeinPaket)</label>
 					<frontend_type>text</frontend_type>
 					<sort_order>40</sort_order>
 					<show_in_default>1</show_in_default>
@@ -87,7 +108,7 @@
 					</fields>
 				</product_attributes>
 				<customer translate="label">
-					<label>Customer</label>
+					<label>Customer (nur MeinPaket)</label>
 					<frontend_type>text</frontend_type>
 					<sort_order>50</sort_order>
 					<show_in_default>1</show_in_default>
@@ -116,28 +137,28 @@
 					<show_in_store>0</show_in_store>
 					<frontend_class>meinpaket</frontend_class>
 					<fields>
-						<order translate="label comment">
-							<label>Order Import</label>
-							<comment><![CDATA[Order import interval.]]></comment>
+						<product translate="label comment">
+							<label>Product Export (nur MeinPaket)</label>
+							<comment><![CDATA[Product export interval]]></comment>
 							<frontend_type>text</frontend_type>
-							<sort_order>30</sort_order>
+							<sort_order>100</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-						</order>
-						<cleanup translate="label comment">
-							<label>Cleanup Interval</label>
-							<comment><![CDATA[Interval to run cleanups.]]></comment>
+						</product>
+						<bestprice translate="label comment">
+							<label>BestPrice Interval (nur MeinPaket)</label>
+							<comment><![CDATA[BestPrice refresh interval.]]></comment>
 							<frontend_type>text</frontend_type>
-							<sort_order>50</sort_order>
+							<sort_order>110</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-						</cleanup>
+						</bestprice>
 					</fields>
 				</cron>
 				<advanced translate="label">
-					<label>Advanced</label>
+					<label>Advanced (nur MeinPaket)</label>
 					<frontend_type>text</frontend_type>
 					<sort_order>150</sort_order>
 					<show_in_default>1</show_in_default>

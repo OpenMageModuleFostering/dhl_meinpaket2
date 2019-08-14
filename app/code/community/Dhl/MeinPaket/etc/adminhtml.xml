@@ -2,19 +2,28 @@
 <config>
 	<menu>
 		<meinpaket>
-			<title>MeinPaket/Postpay</title>
+			<title>MeinPaket / Postpay</title>
 			<children>
 				<meinpaket_backlog translate="title" module="meinpaket">
 					<title>Synchronisation</title>
 					<action>meinpaket/adminhtml_backlog_product</action>
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
 				</meinpaket_backlog>
 				<meinpaket_categoryimport translate="title" module="meinpaket">
 					<title>import categories</title>
 					<action>meinpaket/adminhtml_categoryImport</action>
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
 				</meinpaket_categoryimport>
 				<meinpaket_bestprice translate="title" module="meinpaket">
 					<title>best prices</title>
 					<action>meinpaket/adminhtml_bestPrice</action>
+					<depends>
+						<config>meinpaket/credentials/active</config>
+					</depends>
 				</meinpaket_bestprice>
 			</children>
 			<sort_order>90</sort_order>
@@ -30,7 +39,7 @@
 							<config>
 								<children>
 									<meinpaket translate="title" module="meinpaket">
-										<title>MeinPaket/Postpay</title>
+										<title>MeinPaket / Postpay</title>
 										<sort_order>100</sort_order>
 									</meinpaket>
 								</children>
