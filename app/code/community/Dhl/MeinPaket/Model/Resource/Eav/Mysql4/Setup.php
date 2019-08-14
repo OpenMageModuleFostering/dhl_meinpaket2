@@ -1,5 +1,5 @@
 <?php
-class Dhl_MeinPaket_Model_Resource_Eav_Mysql4_Setup extends Mage_Eav_Model_Entity_Setup {
+class Dhl_MeinPaket_Model_Resource_Eav_Mysql4_Setup extends Mage_Catalog_Model_Resource_Setup {
 	/**
 	 *
 	 * @return array
@@ -16,18 +16,10 @@ class Dhl_MeinPaket_Model_Resource_Eav_Mysql4_Setup extends Mage_Eav_Model_Entit
 								'meinpaket_id' => array (
 										'type' => 'int',
 										'label' => 'Product DHL MeinPaket Id',
+										'required' => false,
 										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
 										'visible' => false,
-										'is_visible' => false,
-										'required' => false,
-										'user_defined' => false,
-										'searchable' => false,
-										'filterable' => false,
-										'comparable' => false,
-										'visible_on_front' => false,
-										'visible_in_advanced_search' => false,
-										'unique' => false,
-										'is_configurable' => false 
+										'group' => 'DHL MeinPaket' 
 								),
 								'sync_with_dhl_mein_paket' => array (
 										'type' => 'int',
@@ -35,90 +27,30 @@ class Dhl_MeinPaket_Model_Resource_Eav_Mysql4_Setup extends Mage_Eav_Model_Entit
 										'frontend' => 'meinpaket/entity_attribute_frontend_labelTranslation',
 										'input' => 'select',
 										'source' => 'meinpaket/entity_attribute_source_productSyncMode',
-										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-										'visible' => false,
 										'required' => false,
-										'user_defined' => false,
-										'searchable' => false,
-										'filterable' => false,
-										'comparable' => false,
-										'visible_on_front' => false,
-										'visible_in_advanced_search' => false,
-										'unique' => false 
+										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+										'visible' => true,
+										'group' => 'DHL MeinPaket' 
 								),
 								'max_stock_for_dhl_mein_paket' => array (
 										'type' => 'int',
 										'label' => 'Maximum stock qty. for MeinPaket.de',
 										'frontend' => 'meinpaket/entity_attribute_frontend_labelTranslation',
 										'input' => 'text',
-										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-										'visible' => false,
 										'required' => false,
-										'user_defined' => false,
-										'searchable' => false,
-										'filterable' => false,
-										'comparable' => false,
-										'visible_on_front' => false,
-										'visible_in_advanced_search' => false,
-										'unique' => false 
+										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+										'visible' => true,
+										'group' => 'DHL MeinPaket' 
 								),
 								'meinpaket_category' => array (
 										'type' => 'text',
-										'label' => 'DHL MeinPaket Categories',
+										'label' => 'DHL MeinPaket Category',
 										'input' => 'select',
 										'source' => 'meinpaket/entity_attribute_source_meinPaketCategory',
+										'required' => false,
 										'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-										'visible' => false,
-										'required' => false,
-										'user_defined' => false,
-										'searchable' => false,
-										'filterable' => false,
-										'comparable' => false,
-										'visible_on_front' => false,
-										'visible_in_advanced_search' => false,
-										'unique' => false 
-								) 
-						) 
-				),
-				'order' => array (
-						'entity_model' => 'sales/order',
-						'table' => 'sales/order',
-						'increment_model' => 'eav/entity_increment_numeric',
-						'increment_per_store' => true,
-						'backend_prefix' => 'sales_entity/order_attribute_backend',
-						'attributes' => array (
-								'meinpaket_id' => array (
-										'type' => 'int',
-										'label' => 'Order MeinPaket Id',
-										'required' => false,
-										'is_visible' => false,
-										'visible' => false 
-								) 
-						) 
-				) ,
-				'customer' => array (
-						'entity_model' => 'customer/customer',
-						'attribute_model' => 'customer/attribute',
-						'table' => 'customer/entity',
-						'increment_model' => 'eav/entity_increment_numeric',
-						'additional_attribute_table' => 'customer/eav_attribute',
-						'entity_attribute_collection' => 'customer/attribute_collection',
-						'attributes' => array (
-								'meinpaket_buyer_id' => array (
-										'type' => 'int',
-										'label' => 'VIA eBay Buyer Id',
-										'input' => 'text',
-										'required' => false,
-										'sort_order' => 200,
-										'visible' => false 
-								),
-								'meinpaket_buyer_name' => array (
-										'type' => 'varchar',
-										'label' => 'VIA eBay Buyer Name',
-										'input' => 'text',
-										'required' => false,
-										'sort_order' => 201,
-										'visible' => false 
+										'visible' => true,
+										'group' => 'DHL MeinPaket' 
 								) 
 						) 
 				) 

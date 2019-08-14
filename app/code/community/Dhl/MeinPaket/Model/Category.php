@@ -5,7 +5,6 @@
  *
  * @category   Mage
  * @package    Dhl_MeinPaket
- * @author     Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Category extends Mage_Core_Model_Abstract {
 	/**

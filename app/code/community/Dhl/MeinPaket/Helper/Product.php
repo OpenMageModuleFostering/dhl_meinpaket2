@@ -30,7 +30,7 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->_eanValidator = Mage::getSingleton ( 'meinpaket/Validation_ValidatorFactory' )->createEanValidator ();
+		$this->_eanValidator = Mage::getSingleton ( 'meinpaketcommon/validation_validator_ean' );
 	}
 	
 	/**
@@ -52,7 +52,7 @@ class Dhl_MeinPaket_Helper_Product extends Mage_Core_Helper_Abstract {
 	public function getEan(Mage_Catalog_Model_Product $product) {
 		$eanAttributeCode = Mage::getStoreConfig ( 'meinpaket/product_attributes/ean_attribute' );
 		
-		if (! empty ( $eanAttributeCode ) && $product->hasData($eanAttributeCode)) {
+		if (! empty ( $eanAttributeCode ) && $product->hasData ( $eanAttributeCode ) && $this->_eanValidator->isValid ( $product->getData ( $eanAttributeCode ) )) {
 			return $product->getData ( $eanAttributeCode );
 		} else {
 			return null;

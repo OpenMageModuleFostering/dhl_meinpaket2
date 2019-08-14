@@ -15,8 +15,15 @@ class Dhl_MeinPaket_Model_Payment_Method_Meinpaket extends Mage_Payment_Model_Me
 	protected $_code = 'meinpaket';
 	
 	/**
-	 *
+	 * Can use this payment method in administration panel?
+	 * @var boolean
+	 */
+	protected $_canUseInternal = false;
+	
+	/**
+	 * Can show this payment method as an option on checkout payment page?
 	 * @var boolean
 	 */
 	protected $_canUseCheckout = false;
+	
 }

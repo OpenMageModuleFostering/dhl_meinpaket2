@@ -6,7 +6,6 @@
  * @category    Dhl
  * @package     Dhl_MeinPaket
  * @subpackage  Helper
- * @author      Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Helper_Data extends Mage_Core_Helper_Abstract {
 	/**
@@ -59,12 +58,12 @@ class Dhl_MeinPaket_Helper_Data extends Mage_Core_Helper_Abstract {
 		
 		return $labelProperty;
 	}
-	const STORE_VIEW_CONFIG = 'meinpaket/store/view';
-	private $_meinpaketStore = null;
-	private $_meinpaketRootCategory = null;
 	public function getExtensionVersion() {
 		return ( string ) Mage::getConfig ()->getModuleConfig ( 'Dhl_MeinPaket' )->version;
 	}
+	const STORE_VIEW_CONFIG = 'meinpaket/store/view';
+	private $_meinpaketStore = null;
+	private $_meinpaketRootCategory = null;
 	public function getMeinPaketStore() {
 		if ($this->_meinpaketStore == null) {
 			$this->_meinpaketStore = Mage::app ()->getStore ( Mage::getStoreConfig ( self::STORE_VIEW_CONFIG ) );

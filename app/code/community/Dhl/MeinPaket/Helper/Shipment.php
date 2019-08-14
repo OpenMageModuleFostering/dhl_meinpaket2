@@ -7,7 +7,6 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Model_Util
  * @version		$Id$
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Helper_Shipment extends Mage_Core_Helper_Abstract {
 	/**

@@ -66,7 +66,7 @@
 				</tr>
 				<tr class="headings">
 					<th class="header-center">#</th>
-					<th class="col-product"><?php echo __('Category'); ?></th>
+					<th class="col-product" colspan="2"><?php echo __('Category'); ?></th>
 					<th><?php echo __('Category Code'); ?></th>
 				</tr>
 			<?php
@@ -78,7 +78,7 @@
 				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
 				<tr class="<?php echo $stripeClass; ?>">
 					<td class="row-num"><?php echo ++$currentIndex; ?></td>
-					<td><?php echo $category->getName(); ?> </td>
+					<td colspan="2"><?php echo $category->getName(); ?> </td>
 					<td><?php echo $category->getCode(); ?></td>
 				</tr>
 			<?php endforeach; ?>
@@ -92,7 +92,7 @@
 				</tr>
 				<tr class="headings">
 					<th class="header-center">#</th>
-					<th class="col-product"><?php echo __('Category'); ?></th>
+					<th class="col-product" colspan="2"><?php echo __('Category'); ?></th>
 					<th><?php echo __('Category Code'); ?></th>
 					</tr>
 			<?php
@@ -104,7 +104,7 @@
 				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
 				<tr class="<?php echo $stripeClass; ?>">
 					<td class="row-num"><?php echo ++$currentIndex; ?></td>
-					<td><?php echo $category->getName(); ?> </td>
+					<td colspan="2"><?php echo $category->getName(); ?> </td>
 					<td><?php echo $category->getCode(); ?></td>
 				</tr>
 			<?php endforeach; ?>

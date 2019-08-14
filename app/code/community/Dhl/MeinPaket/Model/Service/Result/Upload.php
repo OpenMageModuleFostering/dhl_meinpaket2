@@ -8,6 +8,6 @@
  * @subpackage	Model_Service_ShipmentExport
  * @version		$Id$
 S */
-class Dhl_MeinPaket_Model_Service_Result_Upload extends Dhl_MeinPaket_Model_Service_Result_Abstract {
+class Dhl_MeinPaketCommon_Model_Service_Result_Upload extends Dhl_MeinPaket_Model_Service_Result_Abstract {
 }
 

@@ -4,6 +4,9 @@
 		<Dhl_MeinPaket>
 			<active>true</active>
 			<codePool>community</codePool>
+			<depends>
+				<Dhl_MeinPaketCommon />
+			</depends>
 		</Dhl_MeinPaket>
 	</modules>
 </config>

@@ -45,10 +45,10 @@ class Dhl_MeinPaket_Helper_Cron extends Mage_Core_Helper_Abstract {
 						$res = Mage::getSingleton ( 'meinpaket/service_product_export' )->exportProducts ();
 						break;
 					case Dhl_MeinPaket_Model_Cron::SYNC_ORDERS :
-						$res = Mage::getSingleton ( 'meinpaket/service_order_importService' )->importOrders ();
+						$res = Mage::getSingleton ( 'meinpaketcommon/service_order_importService' )->importOrders ();
 						break;
 					case Dhl_MeinPaket_Model_Cron::SYNC_ASYNC :
-						$res = Mage::getSingleton ( 'meinpaket/service_async' )->process ();
+						$res = Mage::getSingleton ( 'meinpaketcommon/service_async' )->process ();
 						break;
 				}
 				

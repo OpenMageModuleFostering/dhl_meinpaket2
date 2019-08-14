@@ -1,40 +1,18 @@
 <?xml version="1.0"?>
 <config>
-	<translate>
-		<modules>
-			<Dhl_adminhtml>
-				<files>
-					<meinpaket>Dhl_Meinpaket.csv</meinpaket>
-				</files>
-			</Dhl_adminhtml>
-		</modules>
-	</translate>
 	<menu>
 		<meinpaket>
-			<title>MeinPaket.de</title>
+			<title>MeinPaket/Postpay</title>
 			<children>
 				<meinpaket_backlog translate="title" module="meinpaket">
 					<title>Synchronisation</title>
 					<action>meinpaket/adminhtml_backlog_product</action>
 				</meinpaket_backlog>
-				<!-- <meinpaket_productexport translate="title"> <title>export products</title> <action>meinpaket/adminhtml_productExport</action> 
-					</meinpaket_productexport> <meinpaket_orderimport translate="title"> <title>import orders</title> <action>meinpaket/adminhtml_orderImport</action> 
-					</meinpaket_orderimport> -->
-				<meinpaket_categoryimport translate="title">
+				<meinpaket_categoryimport translate="title" module="meinpaket">
 					<title>import categories</title>
 					<action>meinpaket/adminhtml_categoryImport</action>
 				</meinpaket_categoryimport>
-				<!-- <meinpaket_attributemapping translate="title"> <title>attribute mapping</title> <action>meinpaket/adminhtml_attributeMapping</action> 
-					</meinpaket_attributemapping> -->
-				<meinpaket_log translate="title" module="meinpaket">
-					<title>Log</title>
-					<action>meinpaket/adminhtml_log</action>
-				</meinpaket_log>
-				<meinpaket_async translate="title" module="meinpaket">
-					<title>Async</title>
-					<action>meinpaket/adminhtml_async</action>
-				</meinpaket_async>
-				<meinpaket_bestprice translate="title">
+				<meinpaket_bestprice translate="title" module="meinpaket">
 					<title>best prices</title>
 					<action>meinpaket/adminhtml_bestPrice</action>
 				</meinpaket_bestprice>
@@ -51,8 +29,8 @@
 						<children>
 							<config>
 								<children>
-									<meinpaket translate="title" module="Dhl_MeinPaket">
-										<title>MeinPaket.de</title>
+									<meinpaket translate="title" module="meinpaket">
+										<title>MeinPaket/Postpay</title>
 										<sort_order>100</sort_order>
 									</meinpaket>
 								</children>

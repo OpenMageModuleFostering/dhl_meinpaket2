@@ -8,7 +8,6 @@ require_once 'abstract.php';
  * @package Dhl_MeinPaket
  * @subpackage Dhl_MeinPaket_Shell
  * @version $Id$
- * @author Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Shell_ProductExport extends Mage_Shell_Abstract {
 	/**

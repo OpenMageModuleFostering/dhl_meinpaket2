@@ -7,7 +7,6 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Block_Adminhtml_CategoryImport
  * @version		$Id$
- * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Block_Adminhtml_CategoryImport_Import extends Mage_Adminhtml_Block_Template {
 	/**
