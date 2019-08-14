@@ -1,0 +1,76 @@
+<div class="content-header">
+	<table cellspacing="0" class="grid-header">
+		<tr>
+			<td><h3 class="icon-head meinpaket"><?php echo __('Import Products'); ?></h3></td>
+			<td class="a-right">
+				<button onclick="startProcessing()" class="scalable" type="button"
+					id="startButton">
+					<span><?php echo $this->__('import orders'); ?></span>
+				</button>
+
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="dashboard-container meinpaket-content">
+	 <?php echo $this->getChildHtml('steps'); ?>
+	  <div class="cc">
+		<!--  -->
+	</div>
+	<div id="meinpaket-description">
+		<p><?php echo __('Textual guide for importing orders follows here'); ?></p>
+	</div>
+	<div id="disabled-till-export" class="meinpaket-waitbox"
+		style="display: none">
+		<img src="/skin/adminhtml/default/default/meinpaket/images/loader.gif" /><br />
+		<small><?php echo $this->__('please wait'); ?></small>
+	</div>
+	<form id="meinpaket_form" name="meinpaket_form" method="get"
+		action="<?php echo $this->getUrl('meinpaket/adminhtml_orderImport/import/') ?>">
+		<fieldset>
+			<label><?php echo $this->__('start date'); ?></label><input
+				name="startdate" id="startdate"
+				value="<?php echo strftime('%m/%e/%y',strtotime('-1 week')); ?>"
+				class=" input-text" style="width: 110px ! important;" type="text"> <img
+				src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" alt=""
+				class="v-middle" id="startdate_trig" title="Select Date" style="">
+			<script type="text/javascript">
+//<![CDATA[
+Calendar.setup({
+	inputField: "startdate",
+	ifFormat: "%m/%e/%y",
+	showsTime: false,
+	button: "startdate_trig",
+	align: "Bl",
+	singleClick : true
+	});
+//]]>
+</script>
+			<br /> <label><?php echo $this->__('end date'); ?></label> <input
+				name="enddate" id="enddate" value="" class=" input-text"
+				style="width: 110px ! important;" type="text"> <img
+				src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" alt=""
+				class="v-middle" id="enddate_trig" title="Select Date" style="">
+			<!-- <small><?php echo $this->__('leave empty to load all till now'); ?></small> -->
+			<script type="text/javascript">
+//<![CDATA[
+Calendar.setup({
+	inputField: "enddate",
+	ifFormat: "%m/%e/%y",
+	showsTime: false,
+	button: "enddate_trig",
+	align: "Bl",
+	singleClick : true
+	});
+	//]]>
+</script>
+		</fieldset>
+		<br />
+		<button onclick="startProcessing()" class="scalable" type="button"
+			id="startButton">
+			<span><?php echo $this->__('import orders'); ?></span>
+		</button>
+	</form>
+	<br />
+</div>
+

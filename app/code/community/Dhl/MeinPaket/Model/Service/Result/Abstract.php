@@ -8,7 +8,7 @@
  * @subpackage	Model_Service
  * @version		$Id$
  */
-abstract class Dhl_MeinPaketCommon_Model_Service_Result_Abstract {
+abstract class Dhl_MeinPaket_Model_Service_Result_Abstract {
 	
 	/**
 	 *

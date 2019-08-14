@@ -7,6 +7,8 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Adminhtml
  * @version		$Id$
+ * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
+ * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Adminhtml_CategoryImportController extends Mage_Adminhtml_Controller_Action {
 	/**
@@ -15,7 +17,7 @@ class Dhl_MeinPaket_Adminhtml_CategoryImportController extends Mage_Adminhtml_Co
 	 * @return Dhl_MeinPaket_Adminhtml_CategoryImportController
 	 */
 	protected function _initAction() {
-		$this->loadLayout ()->_setActiveMenu ( 'meinpaket' );
+		$this->loadLayout ()->_setActiveMenu ( 'meinpaket' ); // TODO how to make this via configuration?
 		$this->_title ( $this->__ ( 'MeinPaket.de' ) )->_title ( $this->__ ( 'Category Import' ) );
 		return $this;
 	}

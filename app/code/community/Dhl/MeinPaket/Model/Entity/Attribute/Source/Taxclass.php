@@ -9,7 +9,7 @@
  * @subpackage	Model_Entity_Attribute_Source
  * @version		$Id$
  */
-class Dhl_MeinPaket_Model_Entity_Attribute_Source_Taxclass extends Mage_Eav_Model_Entity_Attribute_Abstract {
+class Dhl_MeinPaket_Model_entity_Attribute_Source_Taxclass extends Mage_Eav_Model_Entity_Attribute_Abstract {
 	/**
 	 * returns tax classes from database
 	 *

@@ -1,0 +1,213 @@
+<style type="text/css">
+.hidden-mouseover {
+	display: block;
+	font-size: 0.9em;
+	color: #a1a1a1;
+}
+</style>
+<div class="content-header">
+	<table cellspacing="0" class="grid-header">
+		<tr>
+			<td><h3 class="icon-head meinpaket"><?php echo __('export products'); ?> &gt; <?php echo __('Result'); ?></h3></td>
+			<td class="a-right">
+				<button
+					onclick="setLocation('<?php echo $this->getUrl('meinpaket/adminhtml_productExport/index/') ?>')"
+					class="scalable back" type="button">
+					<span><?php echo $this->__('start again'); ?></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="dashboard-container  meinpaket-content">
+
+	<ul class="meinpaket-steps">
+		<li class="nr1"><p><?php echo __('Selection'); ?></p></li>
+		<li class="nr2"><p><?php echo __('Upload'); ?></p></li>
+		<li class="nr3 active"><p><?php echo __('Result'); ?></p></li>
+	</ul>
+	<div class="cc">
+		<!--  -->
+	</div>
+    
+<?php
+if (is_object ( $this->results ) && get_class ( $this->results ) === 'Dhl_MeinPaket_Model_Service_Product_Export_Result') :
+	?>
+	<div id="meinpaket-results" class="scrollablebox grid entry-edit">
+		<table id="meinpaket-results">
+			<tbody>
+		<?php
+	/* @var $results Dhl_MeinPaket_Model_Service_Product_Export_Result */
+	$results = $this->results;
+	// if ($results->hasErrors()) :
+	$confirmedProducts = $results->getFullyConfirmedProductIds ();
+	$offeredOnlyProducts = $results->getProductsWhichCouldOnlyBeOffered ();
+	$notExportedProducts = $results->getProductsWhichCouldNotBeOfferedOrDescribed ();
+	$commonErrors = $results->getCommonErrors ();
+	$stripeClass = 'odd';
+	$currentIndex = 0;
+	?> 
+		
+		<?php if(sizeof($confirmedProducts) > 0) : ?>
+			<tr>
+					<td colspan="4" class="row-subheader"><?php echo __('Successfully Exported Products'); ?> | <span
+						class="resultCount"><?php echo sizeof($confirmedProducts).' '.__('total'); ?></span></td>
+				</tr>
+				<tr class="headings">
+					<th class="header-center">#</th>
+					<th class="col-product"><?php echo __('Product'); ?></th>
+					<th colspan="2"><?php echo __('Edit Product'); ?></th>
+				</tr>
+			<?php $stripeClass	= 'odd'; ?>
+			<?php $currentIndex = 0; ?>
+			<?php foreach($confirmedProducts as $confirmedProductId) : ?>
+				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
+				<?php $product = Mage::getModel('catalog/product')->load($confirmedProductId); ?>
+				<tr class="<?php echo $stripeClass; ?>">
+					<td class="row-num"><?php echo ++$currentIndex; ?></td>
+					<td><?php echo $product->getName(); ?> </td>
+					<td colspan="2"><?php echo $this->getEditLink($product); ?></td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	
+		<?php if(sizeof($commonErrors) > 0) : ?>
+			<tr>
+					<td colspan="4" class="row-subheader"><?php echo __('Common Errors'); ?> | <span
+						class="resultCount"><?php echo sizeof($commonErrors).' '.__('total'); ?></span></td>
+				</tr>
+			<?php foreach ($commonErrors as $error) : ?>
+				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
+				<tr class="<?php echo $stripeClass; ?>">
+					<td class="row-num"><?php echo ++$currentIndex; ?></td>
+					<td colspan="3"><?php echo $error['code']; ?>&nbsp; &nbsp;<?php echo $error['message']; ?>+</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+		
+		<?php if(sizeof($notExportedProducts) > 0) : ?>
+			<?php $stripeClass = 'odd'; ?>
+			<?php $currentIndex = 0; ?>
+			<tr>
+					<td colspan="4" class="row-subheader"><?php echo __('These products could not be exported'); ?> | <span
+						class="resultCount"><?php echo sizeof($notExportedProducts).' '.__('total'); ?></span></td>
+				</tr>
+				<tr class="headings">
+					<th class="header-center" style="width: 1px">#</th>
+					<th class="col-product"><?php echo __('Product'); ?></th>
+					<th><?php echo __('Edit Product'); ?></th>
+					<th class="col-result"><?php echo __('Error Description'); ?></th>
+				</tr>
+			<?php foreach ($notExportedProducts as $notExportedProduct) : ?>	
+				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
+				<?php $product = Mage::getModel('catalog/product')->load($notExportedProduct['id']); ?>
+				<tr class="<?php echo $stripeClass; ?>">
+					<td class="row-num"><?php echo ++$currentIndex; ?></td>
+					<td><?php echo $product->getName(); ?> </td>
+					<td><?php echo $this->getEditLink($product); ?></td>
+					<td>
+					<?php
+			$errorMsg = '';
+			$offerErrorMsg = '';
+			if (! $notExportedProduct ['description'] ['confirmed']) {
+				foreach ( $notExportedProduct ['description'] ['errors'] as $error ) {
+					$tmpErrorMsg = $this->getErrorDescription ( $error ['code'], $error ['type'] ) . '<span class="hidden-mouseover">' . $error ['type'] . '</span>';
+					if (strlen ( $errorMsg ) > 0) {
+						$errorMsg .= '<br/>';
+					}
+					$errorMsg .= $tmpErrorMsg;
+				}
+				echo $errorMsg;
+			}
+			if (! $notExportedProduct ['offer'] ['confirmed']) {
+				foreach ( $notExportedProduct ['offer'] ['errors'] as $error ) {
+					$tmpOfferErrorMsg = $this->getErrorDescription ( $error ['code'], $error ['type'] ) . '<span class="hidden-mouseover">' . $error ['type'] . '</span>';
+					if (strlen ( $offerErrorMsg ) > 0) {
+						$offerErrorMsg .= '<br/>';
+					}
+					$offerErrorMsg .= $tmpOfferErrorMsg;
+				}
+				echo $offerErrorMsg;
+			}
+			?>
+				</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+		
+		<?php if(sizeof($offeredOnlyProducts) > 0) : ?>
+			<tr>
+					<td colspan="4" class="row-subheader"><?php echo __('The following products could only be exported as description'); ?> | <span
+						class="resultCount"><?php echo sizeof($offeredOnlyProducts).' '.__('total'); ?></span></td>
+				</tr>
+				<tr class="headings">
+					<th class="header-center">#</th>
+					<th class="col-product"><?php echo __('Product'); ?></th>
+					<th><?php echo __('Edit Product'); ?></th>
+					<th class="col-result"><?php echo __('Error Description'); ?></th>
+				</tr>
+			<?php $stripeClass = 'odd'; ?>
+			<?php $currentIndex = 0; ?>
+			<?php foreach($offeredOnlyProducts as $onlyOfferedProduct) : ?>
+				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
+				<?php $product = Mage::getModel('catalog/product')->load($onlyOfferedProduct['id']); ?>
+				<tr class="<?php echo $stripeClass; ?>">
+					<td class="row-num"><?php echo ++$currentIndex; ?></td>
+					<td><?php echo $product->getName(); ?> </td>
+					<td><?php echo $this->getEditLink($product); ?></td>
+					<td>
+					<?php $errorMsg = ''; ?>
+					<?php foreach($onlyOfferedProduct['description']['errors'] as $error) : ?>
+						<?php
+				$tmpErrorMsg = $this->getErrorDescription ( $error ['code'], $error ['type'] ) . '<span class="hidden-mouseover">' . $error ['type'] . '</span>';
+				if (strlen ( $errorMsg ) > 0) {
+					$errorMsg .= '<br/>';
+				}
+				$errorMsg .= $tmpErrorMsg;
+				?>
+					<?php endforeach; ?>
+					<?php
+			if (strlen ( $errorMsg ) < 1) {
+				$errorMsg = $this->__ ( 'Not available.' );
+			}
+			?>
+					<?php echo $errorMsg; ?>
+				</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+		
+		<?php if($results->hasFailedVariantGroups()) : ?>
+			<tr>
+					<td colspan="4" class="row-subheader"><?php echo __('The following configurable products could not be exported'); ?> | <span
+						class="resultCount"><?php echo sizeof($results->getFailedVariantGroupIds()).' '.__('total'); ?></span></td>
+				</tr>
+				<tr class="headings">
+					<th class="header-center">#</th>
+					<th class="col-product"><?php echo __('Product'); ?></th>
+					<th><?php echo __('Edit Product'); ?></th>
+					<th class="col-result"><?php echo __('Error Description'); ?></th>
+				</tr>
+			<?php $stripeClass = 'odd'; ?>
+			<?php $currentIndex = 0; ?>
+			<?php foreach($results->getFailedVariantGroups() as $variantId => $variant) : ?>
+				<?php $stripeClass = ($stripeClass === 'even') ? 'odd' : 'even'; ?>
+				<?php $product = Mage::getModel('catalog/product')->load($variantId); ?>
+				<tr class="<?php echo $stripeClass; ?>">
+					<td class="row-num"><?php echo ++$currentIndex; ?></td>
+					<td><?php echo $product->getName(); ?> </td>
+					<td><?php echo $this->getEditLink($product); ?></td>
+					<td>
+					<?php echo $this->getErrorDescription($variant['code'], ''); ?>
+					<span class="hidden-mouseover"><?php echo $variant['message']; ?></span>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	
+		</tbody>
+		</table>
+	</div>
+<?php endif; ?>		
+</div>
+

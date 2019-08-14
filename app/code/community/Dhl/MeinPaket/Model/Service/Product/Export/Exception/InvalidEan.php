@@ -6,6 +6,7 @@
  * @category   Mage
  * @package    Dhl_MeinPaket
  * @subpackage Model_Service_Product_Export_Exception_InvalidEan
+ * @author     Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Service_Product_Export_Exception_InvalidEan extends Dhl_MeinPaket_Model_Exception_InvalidDataException {
 	/**

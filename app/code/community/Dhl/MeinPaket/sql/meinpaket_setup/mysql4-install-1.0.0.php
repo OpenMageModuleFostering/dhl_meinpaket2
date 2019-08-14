@@ -22,7 +22,59 @@
 $installer = $this;
 $installer->startSetup ();
 
-// Mage::getSingleton ( 'adminhtml/session' )->addSuccess ( 'DHL MeinPaket.de extension was successfully installed!' );
+// get DB connectiondelete from core_resource where code = 'meinpaket_setup';
+$db = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_write' );
+$table_prefix = Mage::getConfig ()->getTablePrefix ();
 
-$installer->installEntities ();
+
+// ############### create dhl_mein_paket_order_id attribute #################
+
+// check wether dhl_mein_paket_order_id column exists for orders
+$orderIdFieldExists = false;
+$result = $db->query ( "EXPLAIN {$table_prefix}sales_flat_order" );
+
+while ( $resultset = $result->fetch ( PDO::FETCH_ASSOC ) ) {
+	if ($resultset ['Field'] == 'dhl_mein_paket_order_id')
+		$orderIdFieldExists = true;
+}
+
+if (! $orderIdFieldExists) {
+	$installer->getConnection ()->addColumn ( $installer->getTable ( 'sales_flat_order' ), 'dhl_mein_paket_order_id', 'varchar(255) NULL DEFAULT NULL AFTER `entity_id`' );
+	
+	$installer->addAttribute ( 'order', 'dhl_mein_paket_order_id', array (
+			'type' => 'static' 
+	// 'visible' => false
+		) );
+}
+
+// check wether dhl_mein_paket_order_id column exists for orders grid
+$orderIdFieldExists = false;
+$result = $db->query ( "EXPLAIN {$table_prefix}sales_flat_order_grid" );
+
+while ( $resultset = $result->fetch ( PDO::FETCH_ASSOC ) ) {
+	if ($resultset ['Field'] == 'dhl_mein_paket_order_id')
+		$orderIdFieldExists = true;
+}
+
+if (! $orderIdFieldExists) {
+	$installer->getConnection ()->addColumn ( $installer->getTable ( 'sales_flat_order_grid' ), 'dhl_mein_paket_order_id', 'varchar(255) NULL DEFAULT NULL AFTER `entity_id`' );
+}
+
+// ############### create shipment_was_exported_for_dhl_mein_paket attribute #################
+
+$orderIdFieldExists = false;
+$result = $db->query ( "EXPLAIN {$table_prefix}sales_flat_shipment" );
+
+while ( $resultset = $result->fetch ( PDO::FETCH_ASSOC ) ) {
+	if ($resultset ['Field'] == 'shipment_was_exported_for_dhl_mein_paket')
+		$orderIdFieldExists = true;
+}
+
+if (! $orderIdFieldExists) {
+	$installer->getConnection ()->addColumn ( $installer->getTable ( 'sales_flat_shipment' ), 'shipment_was_exported_for_dhl_mein_paket', 'int(1) NULL DEFAULT NULL AFTER `entity_id`' );
+}
+
+Mage::getSingleton ( 'adminhtml/session' )->addSuccess ( 'DHL MeinPaket.de extension was successfully installed!' );
+
+$installer->installEntities();
 $installer->endSetup ();

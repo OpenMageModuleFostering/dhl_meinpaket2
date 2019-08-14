@@ -8,7 +8,7 @@
  * @subpackage	Model_Service_ShipmentExport
  * @version		$Id$
  */
-class Dhl_MeinPaketCommon_Model_Service_ProductData_RequestService {
+class Dhl_MeinPaket_Model_Service_ProductData_RequestService {
 	/**
 	 * Exports a shipment to MeinPaket.de.
 	 *
@@ -21,7 +21,7 @@ class Dhl_MeinPaketCommon_Model_Service_ProductData_RequestService {
 	 */
 	public function getProductData(Mage_Catalog_Model_Product $product, $sendEAN = false, $sendName = false) {
 		/* @var $uploadRequest Dhl_MeinPaket_Model_Xml_Request_ProductDataRequest */
-		$productDataRequest = Mage::getModel ( 'meinpaketcommon/xml_request_dataRequest' );
+		$productDataRequest = Mage::getModel ( 'meinpaket/xml_request_dataRequest' );
 		
 		/* @var $client Dhl_MeinPaket_Model_Client_XmlOverHttp */
 		$client = Mage::getModel ( 'meinpaket/client_xmlOverHttp' );
@@ -50,10 +50,10 @@ class Dhl_MeinPaketCommon_Model_Service_ProductData_RequestService {
 	 */
 	public function requestBestPrices() {
 		/* @var $uploadRequest Dhl_MeinPaket_Model_Xml_Request_ProductDataRequest */
-		$productDataRequest = Mage::getModel ( 'meinpaketcommon/xml_request_dataRequest' );
+		$productDataRequest = Mage::getModel ( 'meinpaket/xml_request_dataRequest' );
 		
 		/* @var $client Dhl_MeinPaket_Model_Client_XmlOverHttp */
-		$client = Mage::getModel ( 'meinpaketcommon/client_xmlOverHttp' );
+		$client = Mage::getModel ( 'meinpaket/client_xmlOverHttp' );
 		
 		try {
 			/* @var $collection Mage_Catalog_Model_Resource_Product_Collection */

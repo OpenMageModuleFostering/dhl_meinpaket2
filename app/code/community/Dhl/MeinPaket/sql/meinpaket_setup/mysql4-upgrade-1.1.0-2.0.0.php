@@ -6,6 +6,17 @@ $installer->startSetup ();
 
 $installer->installEntities ();
 
+/*
+$installer->run ( "
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/variants')};
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/attributes')};
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/values')};
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/variant_mappings')};
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/attribute_mappings')};
+DROP TABLE IF EXISTS {$this->getTable('meinpaket/value_mappings')};
+" );
+*/
+
 $installer->run ( "
 DROP TABLE IF EXISTS {$this->getTable('meinpaket/category')};
 CREATE TABLE {$this->getTable('meinpaket/category')} (
@@ -31,6 +42,32 @@ $installer->run ( "
 " );
 
 $installer->run ( "
+		DROP TABLE IF EXISTS {$this->getTable('meinpaket/log')};
+		CREATE TABLE {$this->getTable('meinpaket/log')} (
+		`log_id` int(11) unsigned NOT NULL auto_increment,
+		`request_id` varchar(255),
+		`status` varchar(255),
+		`send` text default '',
+		`received` text default '',
+		`error` text default '',
+		`created_at` datetime default '0000-00-00 00:00:00',
+		PRIMARY KEY(`log_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MeinPaket Sync';
+" );
+
+$installer->run ( "
+		DROP TABLE IF EXISTS {$this->getTable('meinpaket/async')};
+		CREATE TABLE {$this->getTable('meinpaket/async')} (
+		`async_id` int(11) unsigned NOT NULL auto_increment,
+		`request_id` varchar(255),
+		`status` varchar(255),
+		`created_at` datetime default '0000-00-00 00:00:00',
+		`updated_at` datetime default '0000-00-00 00:00:00',
+		PRIMARY KEY(`async_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MeinPaket Async Requests';
+" );
+
+$installer->run ( "
 		DROP TABLE IF EXISTS {$this->getTable('meinpaket/bestprice')};
 		CREATE TABLE {$this->getTable('meinpaket/bestprice')} (
 		`bestprice_id` int(11) unsigned NOT NULL auto_increment,
@@ -48,6 +85,7 @@ $installer->run ( "
 		CONSTRAINT `FK_MEINPAKET_BESTPRICE_PRODUCT_ID` FOREIGN KEY (`product_id`) REFERENCES {$installer->getTable('catalog_product_entity')} (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='MeinPaket BestPrices';
 " );
+
 
 $installer->getConnection ()->addColumn ( $installer->getTable ( 'catalog/eav_attribute' ), 'meinpaket_attribute', "VARCHAR( 255 ) DEFAULT 'None' COMMENT 'MeinPaket Attribute'" );
 

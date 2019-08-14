@@ -9,10 +9,7 @@ class Dhl_MeinPaket_Block_Adminhtml_Backlog_Product_Grid extends Mage_Adminhtml_
 		$this->setSaveParametersInSession ( true );
 	}
 	protected function _prepareCollection() {
-		/* @var $model Dhl_MeinPaket_Model_Backlog_Product */
-		$model = Mage::getModel ( 'meinpaket/backlog_product' );
-		/* @var $collection Dhl_MeinPaket_Model_Mysql4_Backlog_Product_Collection */
-		$collection = $model->getCollection ();
+		$collection = Mage::getModel ( 'meinpaket/backlog_product' )->getCollection ();
 		$collection->getSelect ()->joinLeft ( array (
 				'product_table' => $collection->getTable ( 'catalog/product' ) 
 		), 'main_table.product_id=product_table.entity_id', array (
@@ -33,7 +30,7 @@ class Dhl_MeinPaket_Block_Adminhtml_Backlog_Product_Grid extends Mage_Adminhtml_
 				'type' => 'number',
 				'index' => 'product_id' 
 		) );
-
+		
 		$this->addColumn ( 'sku', array (
 				'header' => Mage::helper ( 'meinpaket' )->__ ( 'SKU' ),
 				'index' => 'sku' 

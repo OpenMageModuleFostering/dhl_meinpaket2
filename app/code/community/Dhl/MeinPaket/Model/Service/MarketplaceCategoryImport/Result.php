@@ -7,8 +7,9 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Model_Service_MarketplaceCategoryImport
  * @version		$Id$
+ * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
-class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_Result extends Dhl_MeinPaketCommon_Model_Service_Result_Abstract {
+class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_Result extends Dhl_MeinPaket_Model_Service_Result_Abstract {
 	/**
 	 *
 	 * @var array

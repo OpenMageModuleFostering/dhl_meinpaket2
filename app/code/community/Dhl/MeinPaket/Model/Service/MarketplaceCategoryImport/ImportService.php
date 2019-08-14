@@ -8,6 +8,8 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Model_Service_MarketplaceCategoryImport
  * @version		$Id$
+ * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
+ * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extends Varien_Object {
 	/**
@@ -53,7 +55,7 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 		$collection = $rootCategory->getCollection ();
 		
 		/* @var $memoryLimiter Dhl_MeinPaket_Model_System_MemoryLimiter */
-		$memoryLimiter = Mage::getModel ( 'meinpaketcommon/system_memoryLimiter' );
+		$memoryLimiter = Mage::getModel ( 'meinpaket/System_MemoryLimiter' );
 		
 		/* @var $requestXml string */
 		$requestXml = '';
@@ -65,9 +67,9 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 		$structure = null;
 		
 		/* @var $client Dhl_MeinPaket_Model_Client_XmlOverHttp */
-		$client = Mage::getModel ( 'meinpaketcommon/client_xmlOverHttp' );
+		$client = Mage::getModel ( 'meinpaket/client_xmlOverHttp' );
 		
-		$memoryLimiter->setMemoryLimit ( Dhl_MeinPaketCommon_Model_System_MemoryLimiter::MEMORY_LIMIT_VERY_HIGH );
+		$memoryLimiter->setMemoryLimit ( Dhl_MeinPaket_Model_System_MemoryLimiter::MEMORY_LIMIT_VERY_HIGH );
 		
 		/* @var $ids array */
 		$ids = array ();
@@ -78,7 +80,7 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 			$transaction->beginTransaction ();
 			
 			/* @var $request Dhl_MeinPaket_Model_Xml_Request_DownloadRequest */
-			$request = Mage::getModel ( 'meinpaketcommon/xml_request_downloadRequest' );
+			$request = Mage::getModel ( 'meinpaket/xml_request_downloadRequest' );
 			$request->addDownloadMarketplaceCategories ();
 			
 			$dom = $client->send ( $request );
@@ -100,7 +102,9 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 				$categories [$model->getCode ()] = $model;
 				
 				if ($model->getId ()) {
-					$ids = array_diff ( $ids, array($model->getId ()) );
+					$ids = array_diff ( $ids, [ 
+							$model->getId () 
+					] );
 				}
 			}
 			
@@ -123,7 +127,7 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 			}
 			
 			foreach ( $ids as $id ) {
-				$model = Mage::getModel ( 'meinpaket/category' )->load ( $id );
+				$model = Mage::getModel ( 'meinpaket/category' )->load ( $attr ['code'], 'code' );
 				if ($model->getId () != null) {
 					$this->result->addDeletedCategory ( $model );
 					$model->delete ();

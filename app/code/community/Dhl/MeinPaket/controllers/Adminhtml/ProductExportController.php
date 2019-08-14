@@ -7,6 +7,8 @@
  * @package		Dhl_MeinPaket
  * @subpackage	Adminhtml
  * @version		$Id$
+ * @author		Daniel Pötzinger <daniel.poetzinger@aoemedia.de>
+ * @author		Timo Fuchs <timo.fuchs@aoemedia.de>
  */
 class Dhl_MeinPaket_Adminhtml_ProductExportController extends Mage_Adminhtml_Controller_Action {
 	/**
