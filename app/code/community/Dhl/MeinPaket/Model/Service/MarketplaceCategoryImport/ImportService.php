@@ -102,9 +102,7 @@ class Dhl_MeinPaket_Model_Service_MarketplaceCategoryImport_ImportService extend
 				$categories [$model->getCode ()] = $model;
 				
 				if ($model->getId ()) {
-					$ids = array_diff ( $ids, [ 
-							$model->getId () 
-					] );
+					$ids = array_diff ( $ids, array($model->getId ()) );
 				}
 			}
 			

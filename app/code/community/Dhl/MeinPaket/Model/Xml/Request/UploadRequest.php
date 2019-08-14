@@ -339,7 +339,7 @@ class Dhl_MeinPaket_Model_Xml_Request_UploadRequest extends Dhl_MeinPaket_Model_
 	protected function exportAttributes(Mage_Catalog_Model_Product $product, DOMNode $node, Mage_Catalog_Model_Product $configurableProduct = null) {
 		$configurableAttributes = array ();
 		
-		if ($configurableProduct != null) {
+		if ($configurableProduct != null && $configurableProduct->getTypeId () == Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE) {
 			foreach ( $configurableProduct->getTypeInstance ( true )->getConfigurableAttributes ( $configurableProduct ) as $attr ) {
 				$configurableAttributes [] = $attr->getProductAttribute ()->getAttributeCode ();
 			}
